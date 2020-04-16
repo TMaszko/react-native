@@ -81,8 +81,14 @@ class AnimatedValue extends AnimatedWithChildren {
       throw new Error('AnimatedValue: Attempting to set value to undefined');
     }
     this._startingValue = this._value = value;
+    this._lastValue = this.value;
     this._offset = 0;
     this._animation = null;
+  }
+
+  __attach() {
+    super.__attach();
+    this._value = this._lastValue;
   }
 
   __detach() {
@@ -218,6 +224,7 @@ class AnimatedValue extends AnimatedWithChildren {
         if (handle !== null) {
           InteractionManager.clearInteractionHandle(handle);
         }
+        this._lastValue = result.value;
         callback && callback(result);
       },
       previousAnimation,
