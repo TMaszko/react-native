@@ -80,7 +80,8 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
   _valueNode = nil;
   if (_callback) {
     _callback(@[@{
-      @"finished": @(_animationHasFinished)
+      @"finished": @(_animationHasFinished),
+      @"value": @(_lastPosition)
     }]);
   }
 }
