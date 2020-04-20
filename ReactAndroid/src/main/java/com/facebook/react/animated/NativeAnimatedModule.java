@@ -426,4 +426,16 @@ public class NativeAnimatedModule extends ReactContextBaseJavaModule
           }
         });
   }
+
+  @ReactMethod
+  public void getValue(final int nodeTag, Callback callback) {
+    mOperations.add(
+      new UIThreadOperation() {
+        @Override
+        public void execute(NativeAnimatedNodesManager animatedNodesManager) {
+          animatedNodesManager.getValue(nodeTag, callback);
+        }
+      }
+    );
+  }
 }
